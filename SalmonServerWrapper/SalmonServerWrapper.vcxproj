@@ -1,0 +1,213 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{98695E12-1598-4BEB-B795-E1BD7A24B847}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>SalmonServerWrapper</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;C:\Users\Salmon\Documents\Visual Studio 2013\Projects\SalmonServerWrapper\PolarSSL.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;C:\Users\Salmon\Documents\Visual Studio 2013\Projects\SalmonServerWrapper\PolarSSL.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="connection_logic.h" />
+    <ClInclude Include="connect_tls.h" />
+    <ClInclude Include="constants.h" />
+    <ClInclude Include="control_softether.h" />
+    <ClInclude Include="globals.h" />
+    <ClInclude Include="pipefile.h" />
+    <ClInclude Include="polarssl\aes.h" />
+    <ClInclude Include="polarssl\aesni.h" />
+    <ClInclude Include="polarssl\arc4.h" />
+    <ClInclude Include="polarssl\asn1.h" />
+    <ClInclude Include="polarssl\asn1write.h" />
+    <ClInclude Include="polarssl\base64.h" />
+    <ClInclude Include="polarssl\bignum.h" />
+    <ClInclude Include="polarssl\blowfish.h" />
+    <ClInclude Include="polarssl\bn_mul.h" />
+    <ClInclude Include="polarssl\camellia.h" />
+    <ClInclude Include="polarssl\ccm.h" />
+    <ClInclude Include="polarssl\certs.h" />
+    <ClInclude Include="polarssl\check_config.h" />
+    <ClInclude Include="polarssl\cipher.h" />
+    <ClInclude Include="polarssl\cipher_wrap.h" />
+    <ClInclude Include="polarssl\compat-1.2.h" />
+    <ClInclude Include="polarssl\config.h" />
+    <ClInclude Include="polarssl\ctr_drbg.h" />
+    <ClInclude Include="polarssl\debug.h" />
+    <ClInclude Include="polarssl\des.h" />
+    <ClInclude Include="polarssl\dhm.h" />
+    <ClInclude Include="polarssl\ecdh.h" />
+    <ClInclude Include="polarssl\ecdsa.h" />
+    <ClInclude Include="polarssl\ecp.h" />
+    <ClInclude Include="polarssl\entropy.h" />
+    <ClInclude Include="polarssl\entropy_poll.h" />
+    <ClInclude Include="polarssl\error.h" />
+    <ClInclude Include="polarssl\gcm.h" />
+    <ClInclude Include="polarssl\havege.h" />
+    <ClInclude Include="polarssl\hmac_drbg.h" />
+    <ClInclude Include="polarssl\md.h" />
+    <ClInclude Include="polarssl\md2.h" />
+    <ClInclude Include="polarssl\md4.h" />
+    <ClInclude Include="polarssl\md5.h" />
+    <ClInclude Include="polarssl\md_wrap.h" />
+    <ClInclude Include="polarssl\memory.h" />
+    <ClInclude Include="polarssl\memory_buffer_alloc.h" />
+    <ClInclude Include="polarssl\net.h" />
+    <ClInclude Include="polarssl\oid.h" />
+    <ClInclude Include="polarssl\openssl.h" />
+    <ClInclude Include="polarssl\padlock.h" />
+    <ClInclude Include="polarssl\pbkdf2.h" />
+    <ClInclude Include="polarssl\pem.h" />
+    <ClInclude Include="polarssl\pk.h" />
+    <ClInclude Include="polarssl\pkcs11.h" />
+    <ClInclude Include="polarssl\pkcs12.h" />
+    <ClInclude Include="polarssl\pkcs5.h" />
+    <ClInclude Include="polarssl\pk_wrap.h" />
+    <ClInclude Include="polarssl\platform.h" />
+    <ClInclude Include="polarssl\ripemd160.h" />
+    <ClInclude Include="polarssl\rsa.h" />
+    <ClInclude Include="polarssl\sha1.h" />
+    <ClInclude Include="polarssl\sha256.h" />
+    <ClInclude Include="polarssl\sha512.h" />
+    <ClInclude Include="polarssl\ssl.h" />
+    <ClInclude Include="polarssl\ssl_cache.h" />
+    <ClInclude Include="polarssl\ssl_ciphersuites.h" />
+    <ClInclude Include="polarssl\threading.h" />
+    <ClInclude Include="polarssl\timing.h" />
+    <ClInclude Include="polarssl\version.h" />
+    <ClInclude Include="polarssl\x509.h" />
+    <ClInclude Include="polarssl\x509_crl.h" />
+    <ClInclude Include="polarssl\x509_crt.h" />
+    <ClInclude Include="polarssl\x509_csr.h" />
+    <ClInclude Include="polarssl\xtea.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="SalmonServerWrapper.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="stringLL.h" />
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="utility.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="connection_logic.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="connect_tls.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="control_softether.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="getline.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="globals.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="pipefile.c" />
+    <ClCompile Include="SalmonServerWrapper.c" />
+    <ClCompile Include="stdafx.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="stringLL.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="tls_swrap.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="utility.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="SalmonServerWrapper.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="SalmonServerWrapper.ico" />
+    <Image Include="small.ico" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
