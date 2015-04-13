@@ -494,19 +494,6 @@ DWORD WINAPI monitorUsersBandwidth(LPVOID dummyarg)
 
 
 
-
-
-==========================================
-*******************************************
-
-
-	sprintf(toExec, "\"%s\" /server localhost /hub:salmon /password:%s /cmd grouppolicyset salmongroup /NAME:MaxDownload /VALUE:%u", g_vpncmdPath, gAdminPass, bits_per_sec_BW);
-	systemNice(toExec);
-
-
-
-
-
 //ensures access control rules (only http(s) etc are allowed) have been applied; applies if not
 void ensurePortBlocks(char* hubName)
 {
@@ -554,7 +541,7 @@ void ensurePortBlocks(char* hubName)
 	sprintf(toExec, "\"%s\" /server  localhost /hub:%s /password:%s /cmd accessadd pass /memo:https /priority:1 /srcip:%s.0/24 /protocol:tcp /destport:443 /srcusername: /destusername: /srcmac: /destmac: /destip:0.0.0.0/0 /srcport: /tcpstate:",
 				g_vpncmdPath, hubName, gAdminPass, gTapBaseIP);
 	system(toExec);
-	sleep(1); //softether vpncmd appears to be finnicky about adding so many rules at once
+	Sleep(1000); //softether vpncmd appears to be finnicky about adding so many rules at once
 	
 	
 	
@@ -566,7 +553,7 @@ void ensurePortBlocks(char* hubName)
 	sprintf(toExec, "\"%s\" /server  localhost /hub:%s /password:%s /cmd accessadd pass /memo:kerberos /priority:2 /srcip:%s.0/24 /protocol:0 /destport:88 /srcusername: /destusername: /srcmac: /destmac: /destip:0.0.0.0/0 /srcport: /tcpstate:",
 				g_vpncmdPath, hubName, gAdminPass, gTapBaseIP);
 	system(toExec);
-	sleep(1); //softether vpncmd appears to be finnicky about adding so many rules at once
+	Sleep(1000); //softether vpncmd appears to be finnicky about adding so many rules at once
 	
 	
 	
@@ -581,7 +568,7 @@ void ensurePortBlocks(char* hubName)
 	sprintf(toExec, "\"%s\" /server  localhost /hub:%s /password:%s /cmd accessadd pass /memo:viber /priority:2 /srcip:%s.0/24 /protocol:udp /destport:5243 /srcusername: /destusername: /srcmac: /destmac: /destip:0.0.0.0/0 /srcport: /tcpstate:",
 				g_vpncmdPath, hubName, gAdminPass, gTapBaseIP);
 	system(toExec);
-	sleep(1); //softether vpncmd appears to be finnicky about adding so many rules at once
+	Sleep(1000); //softether vpncmd appears to be finnicky about adding so many rules at once
 	
 	sprintf(toExec, "\"%s\" /server  localhost /hub:%s /password:%s /cmd accessadd pass /memo:viber /priority:2 /srcip:%s.0/24 /protocol:udp /destport:9785 /srcusername: /destusername: /srcmac: /destmac: /destip:0.0.0.0/0 /srcport: /tcpstate:",
 				g_vpncmdPath, hubName, gAdminPass, gTapBaseIP);
@@ -594,7 +581,7 @@ void ensurePortBlocks(char* hubName)
 	sprintf(toExec, "\"%s\" /server  localhost /hub:%s /password:%s /cmd accessadd pass /memo:aim /priority:2 /srcip:%s.0/24 /protocol:tcp /destport:5190 /srcusername: /destusername: /srcmac: /destmac: /destip:0.0.0.0/0 /srcport: /tcpstate:",
 				g_vpncmdPath, hubName, gAdminPass, gTapBaseIP);
 	system(toExec);
-	sleep(1); //softether vpncmd appears to be finnicky about adding so many rules at once
+	Sleep(1000); //softether vpncmd appears to be finnicky about adding so many rules at once
 	
 	sprintf(toExec, "\"%s\" /server  localhost /hub:%s /password:%s /cmd accessadd pass /memo:xmpp /priority:2 /srcip:%s.0/24 /protocol:tcp /destport:5222-5223 /srcusername: /destusername: /srcmac: /destmac: /destip:0.0.0.0/0 /srcport: /tcpstate:",
 				g_vpncmdPath, hubName, gAdminPass, gTapBaseIP);
@@ -607,7 +594,7 @@ void ensurePortBlocks(char* hubName)
 	sprintf(toExec, "\"%s\" /server  localhost /hub:%s /password:%s /cmd accessadd pass /memo:httpalt /priority:2 /srcip:%s.0/24 /protocol:tcp /destport:8080 /srcusername: /destusername: /srcmac: /destmac: /destip:0.0.0.0/0 /srcport: /tcpstate:",
 				g_vpncmdPath, hubName, gAdminPass, gTapBaseIP);
 	system(toExec);
-	sleep(2); //softether vpncmd appears to be finnicky about adding so many rules at once
+	Sleep(2000); //softether vpncmd appears to be finnicky about adding so many rules at once
 	
 	
 	
