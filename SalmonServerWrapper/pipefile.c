@@ -37,6 +37,41 @@ void pcloseNice(PIPEFILE* p)
 	free(p);
 }
 
+//just check whether the specified program can be popen()'d
+BOOL popenCheckExe(const char* cmdToExec)
+{
+	SECURITY_ATTRIBUTES sa;
+	sa.nLength = sizeof(SECURITY_ATTRIBUTES);
+	sa.lpSecurityDescriptor = NULL;
+	sa.bInheritHandle = TRUE;
+
+	HANDLE initReadTheirStdout, readTheirStdout, writeTheirStdout;
+	CreatePipe(&initReadTheirStdout, &writeTheirStdout, &sa, 0);
+	DuplicateHandle(GetCurrentProcess(), initReadTheirStdout, GetCurrentProcess(), &readTheirStdout, 0, FALSE, DUPLICATE_SAME_ACCESS);
+	CloseHandle(initReadTheirStdout);
+
+	STARTUPINFO si;
+	memset(&si, 0, sizeof(STARTUPINFO));
+	si.cb = sizeof(STARTUPINFO);
+	si.dwFlags = STARTF_USESTDHANDLES;
+	si.hStdOutput = writeTheirStdout;
+	si.hStdInput = NULL;
+	si.hStdError = NULL;
+
+	WCHAR toExecW[600]; //EXEC_VPNCMD_BUFSIZE = 600
+	mbstowcs(toExecW, cmdToExec, 600);
+	PROCESS_INFORMATION pi; //out param
+	if (!CreateProcess(NULL, toExecW, NULL, NULL, TRUE, CREATE_NO_WINDOW, NULL, NULL, &si, &pi))
+		return FALSE;
+
+	CloseHandle(pi.hThread);
+	CloseHandle(writeTheirStdout);
+	CloseHandle(readTheirStdout);
+	CloseHandle(pi.hProcess);
+
+	return TRUE;
+}
+
 PIPEFILE* popenRNice(const char* cmdToExec)
 {
 	SECURITY_ATTRIBUTES sa;

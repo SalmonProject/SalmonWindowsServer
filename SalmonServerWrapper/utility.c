@@ -27,6 +27,8 @@
 
 void stopServer();
 
+BOOL popenCheckExe(const char* cmdToExec);
+
 //NOTE: yes, this is always the Program Files (NOT x86) directory. softether installs to Program Files (NOT x86) on a 64 bit machine.
 //microsoft doesn't want a 32 bit program seeing the "real" Program Files directory on a 64-bit machine, since it would mess with
 //the emulation layer that the 32-on-64 thing works on. that doesn't apply to us, though; we're just trying to find vpncmd.exe to system("") it.
@@ -60,16 +62,34 @@ void load_vpncmdexe_Path()
 	DWORD vpncmdAttributes = GetFileAttributes(vpncmdPathW);
 	if (vpncmdAttributes != INVALID_FILE_ATTRIBUTES && !(vpncmdAttributes & FILE_ATTRIBUTE_DIRECTORY))
 	{
-		strcpy(g_vpncmdPath, vpnc64);
-		return;
+		//ok, the 64-bit version is present... BUT. In a 32-bit Windows installation on a 64-bit machine,
+		//SoftEther will put vpncmd64 in here, but then it won't work. So, ensure the vpncmd64 that is here actually works.
+		char toExec[EXEC_VPNCMD_BUFSIZE];
+		sprintf(toExec, "\"%s\" localhost /server /cmd hublist", vpnc64);
+		if (popenCheckExe(toExec))
+		{
+			strcpy(g_vpncmdPath, vpnc64);
+			return;
+		}
 	}
 
 	mbstowcs(vpncmdPathW, vpnc, VPNCMDPATH_BUFSIZE);
 	vpncmdAttributes = GetFileAttributes(vpncmdPathW);
 	if (vpncmdAttributes != INVALID_FILE_ATTRIBUTES && !(vpncmdAttributes & FILE_ATTRIBUTE_DIRECTORY))
 	{
-		strcpy(g_vpncmdPath, vpnc);
-		return;
+		//might as well also do a sanity check on the 32-bit one
+		char toExec[EXEC_VPNCMD_BUFSIZE];
+		sprintf(toExec, "\"%s\" localhost /server /cmd hublist", vpnc);
+		if (popenCheckExe(toExec))
+		{
+			strcpy(g_vpncmdPath, vpnc);
+			return;
+		}
+		else
+		{
+			logMajorError("64-bit vpncmd was either not present in Program Files\\SoftEther VPN Client or did not work, and 32-bit vpncmd WAS present but did NOT work. This is bizarre...");
+			ExitProcess(0);
+		}
 	}
 	
 	strcpy(g_vpncmdPath, vpnc);
@@ -79,6 +99,7 @@ void load_vpncmdexe_Path()
 	logMajorError(vpncmdErrMsg);
 	ExitProcess(0);
 }
+
 
 void reportSoftEtherError()
 {
